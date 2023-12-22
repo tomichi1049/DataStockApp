@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class Postseeder extends Seeder
 {
@@ -14,6 +16,14 @@ class Postseeder extends Seeder
      */
     public function run()
     {
-        
+        DB::table('posts')->insert([
+                'title' => 'title',
+                'category'=>'category',
+                'user'=>'user',
+                'text' => 'text',
+                'image'=>'image',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
     }
 }
