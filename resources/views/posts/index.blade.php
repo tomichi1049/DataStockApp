@@ -7,18 +7,20 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Thread</h1>
+        <h1>Thread Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h2 class='post'>{{ $post->post }}</h2>
-                    <h3 class='title'>{{$post->title}}</h3>
-                    <h3 class='category'>{{$post->category}}</h3>
+                    <h2 class='title'>{{ $post->title }}</h2>
+                    <h2 class='category'>{{$post->category}}</h2>
                     <p class='user'>{{ $post->user }}</p>
                     <p class='text'>{{ $post->text }}</p>
-                    <p class='photo'>{{ $post->photo }}</p>
+                    <p class='image'>{{ $post->image }}</p>
                 </div>
             @endforeach
+        </div>
+        <div class='paginate'>
+            {{ $posts->links() }}
         </div>
     </body>
 </html>
