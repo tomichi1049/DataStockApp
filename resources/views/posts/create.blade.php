@@ -15,7 +15,7 @@
             </div>
             <div class="category">
                 <h3>カテゴリー</h3>
-                <select name="post[category]" value="{{ old('post.category') }}">
+                <select name="post[category]">
                     <option value="備品">備品</option>
                     <option value="ポスター">ポスター</option>
                     <option value="空間デザイン">空間デザイン</option>
@@ -26,7 +26,6 @@
                     <option value="申請書">申請書</option>
                     <option value="その他">その他</option>
                 </select>
-                <p class="category__error" style="color:red">{{ $errors->first('post.category') }}</p>
             </div>
             <div class="user">
                 <h3>投稿者名</h3>
