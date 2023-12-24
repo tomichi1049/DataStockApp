@@ -34,7 +34,7 @@
             </div>
             <div class="text">
                 <h3>詳細</h3>
-                <textarea name="post[text]" placeholder="内容を入力してください。"value="{{ old('post.text') }}"></textarea>
+                <textarea name="post[text]" placeholder="内容を入力してください。" value="{{ old('post.text') }}"></textarea>
                 <p class="text__error" style="color:red">{{ $errors->first('post.text') }}</p>
             </div>
             <div class="image">
