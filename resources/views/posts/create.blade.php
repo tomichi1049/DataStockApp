@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>データ投稿作成</h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <h2>タイトル</h2>

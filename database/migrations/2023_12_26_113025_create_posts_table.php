@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('category',50);
             $table->string('user',50);
             $table->string('text',2000);
-            $table->string('image')->nullable();
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
