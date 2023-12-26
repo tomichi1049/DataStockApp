@@ -39,5 +39,7 @@
                 }
             }
         </script>
+        <br>
+        <div class='show__user'>ユーザー名：{{ Auth::user()->name  }}</div>
     </body>
 </html>
