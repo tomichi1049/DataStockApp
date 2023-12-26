@@ -19,7 +19,7 @@
                 <h3>詳細</h3>
                 <p>{{$post->text}}</p>
                 <h3>写真</h3>
-                <p>{{$post->image}}</p>
+                <img src="{{$post->image_url}}" alt="画像が読み込めません。"/>
             </div>
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <div class="footer">

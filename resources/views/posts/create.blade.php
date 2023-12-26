@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>データ投稿作成</h1>
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <h2>タイトル</h2>
@@ -39,7 +39,7 @@
             </div>
             <div class="image">
                 <h3>写真</h3>
-                <input type="file" name="post[image]"  accept="image/png, image/jpeg"/>
+                <input type="file" name="image"  accept="image/png, image/jpeg"/>
             </div>
             <br>
             <input type="submit" value="送信"/>
