@@ -2,28 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Database</title>
+        <title>SearchResult</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Thread Name</h1>
-        <a href='/posts/create'>作成</a>
-        <form action="{{route('posts.searchresult')}}" class="search" method="post">
-            <input type="text" name="title" placeholder="検索：タイトル" value="{{$keyword}}">
-            <select name="post[category]">
-                <option value="備品">備品</option>
-                <option value="ポスター">ポスター</option>
-                <option value="空間デザイン">空間デザイン</option>
-                <option value="食材">食材</option>
-                <option value="外部関係者">外部関係者</option>
-                <option value="SIC">SIC</option>
-                <option value="領収書">領収書</option>
-                <option value="申請書">申請書</option>
-                <option value="その他">その他</option>
-            </select>
-            <input type="submit" name="submit" value="検索">
-        </form>
+        <h1>検索結果</h1>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>

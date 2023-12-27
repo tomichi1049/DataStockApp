@@ -9,8 +9,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(PostRequest $request, Post $post)
     {
+        $keyword=$request->input('keyword');
+        $query = Post::query();
+        
+        if(isset($keyword)){
+            $query->where('posts.title', 'LIKE', "%{$keyword}%");
+        }
+        $posts = $query->get();
+        return view('index', compact('posts', 'keyword'));
+        
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);  
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
