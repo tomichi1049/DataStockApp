@@ -21,8 +21,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
     
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', 'index')->name('index');
+
     Route::get('/posts/create', 'create')->name('create');
+    Route::get('/', 'index')->name('index');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
