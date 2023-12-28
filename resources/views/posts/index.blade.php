@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Database</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+<x-app-layout>
         <h1>Thread Name</h1>
         <a href='/posts/create'>作成</a>
-        <form action="{{route('posts.searchresult')}}" class="search" method="post">
-            <input type="text" name="title" placeholder="検索：タイトル" value="{{$keyword}}">
+        <form action="/" class="search" method="post">
+            <input type="text" name="title" placeholder="検索：タイトル" value="">
             <select name="post[category]">
                 <option value="備品">備品</option>
                 <option value="ポスター">ポスター</option>
@@ -56,5 +48,4 @@
         </script>
         <br>
         <div class='show__user'>ユーザー名：{{ Auth::user()->name  }}</div>
-    </body>
-</html>
+</x-app-layout>
