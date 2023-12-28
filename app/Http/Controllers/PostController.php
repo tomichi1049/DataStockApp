@@ -12,15 +12,20 @@ class PostController extends Controller
     public function index(Request $request, Post $post)
     {
         $keyword=$request->input('keyword');
-        $query = Post::query();
         
         if(isset($keyword)){
-            $query->where('posts.title', 'LIKE', "%{$keyword}%");
-            return view('index', compact('posts', 'keyword'));
+            $keywordArraySearched=preg_split('/[\s]+/', $keyword, -1, PREG_SPLIT_NO_EMPTY);
+            $query = Post::query();
+            foreach($keywordArraySearched as $value){
+                $query->where('title', 'like', '%'.$value.'%');
+            }
+            $posts = $query->get();
         }
-        $posts = $query->get();
+        else{
+            $posts=$post->getPaginateByLimit(10);
+        }
         
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);  
+        return view('posts.index')->with('keyword', $keyword)->with(['posts' => $post->getPaginateByLimit()]);  
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
     
