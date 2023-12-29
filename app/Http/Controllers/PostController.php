@@ -6,28 +6,32 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Cloudinary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     public function index(Request $request, Post $post)
     {
         $keyword=$request->input('keyword');
-        
-        if(isset($keyword)){
+        $posts = null;
+        //エラー発生を回避するため初期化
+       
+        if(!empty($keyword)){
             $keywordArraySearched=preg_split('/[\s]+/', $keyword, -1, PREG_SPLIT_NO_EMPTY);
             $query = Post::query();
             foreach($keywordArraySearched as $value){
                 $query->where('title', 'like', '%'.$value.'%');
             }
             $posts = $query->get();
+        return view('posts.index')->with('keyword', $keyword)->with(['posts' => $posts]);  
         }
-        else{
-            $posts=$post->getPaginateByLimit(10);
-        }
-        
+        //①searchresult.blade.phpを利用して、indexの外部で処理を実行する
+        //②returnをif内で使用できるか試してみる。→一番最後のreturnのみ有効。やはり1つしかかけないのかも。
+       
         return view('posts.index')->with('keyword', $keyword)->with(['posts' => $post->getPaginateByLimit()]);  
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
+    
     
     public function show(Post $post)
     {
