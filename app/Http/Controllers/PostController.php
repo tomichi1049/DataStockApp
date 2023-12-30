@@ -6,23 +6,31 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Cloudinary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
     public function index(Request $request, Post $post)
     {
         $keyword=$request->input('keyword');
-        $query = Post::query();
-        
-        if(isset($keyword)){
-            $query->where('posts.title', 'LIKE', "%{$keyword}%");
-            //return view('index', compact('posts', 'keyword'));
+        $keywords = null;
+        //エラー発生を回避するため初期化
+       
+        if(!empty($keyword)){
+            $keywordArraySearched=preg_split('/[\s]+/', $keyword, -1, PREG_SPLIT_NO_EMPTY);
+            $query = Post::query();
+            $keywords=DB::table('posts')
+            ->where(function ($query)use($keywordArraySearched){
+                foreach($keywordArraySearched as $value){
+                    $query->orwhere('title', 'like', '%'.$value.'%');
+                }
+            })->get();
         }
-        $posts = $query->get();
-        
-        return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);  
-       //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
+       
+        return view('posts.index')->with('keyword', $keyword)->with(['keywords' => $keywords, 'all_posts' => $post->getPaginateByLimit()]); 
+
     }
+    
     
     public function show(Post $post)
     {
