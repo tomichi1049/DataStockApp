@@ -16,9 +16,9 @@ class PostController extends Controller
         $keywords = null;
     
         if(!$keyword) {
-            $keywords = Post::where('title', 'like', "%{$keyword}%");
+            $keywords = Post::where('title', 'like', "%{$keyword}%")->get();
         }
-        return view('posts.index')->with(['posts' => $post -> getPaginateBylimit()])->with('keywords', $keywords);
+        return view('posts.index')->with('keywords', $keywords)->with(['keywords' => $keywords,'posts' => $post -> getPaginateBylimit()]);
     }
     
     
