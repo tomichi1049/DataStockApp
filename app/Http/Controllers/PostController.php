@@ -19,6 +19,7 @@ class PostController extends Controller
             $keywords = Post::where('title', 'like', "%{$keyword}%")->get();
         }
         return view('posts.index')->with('keywords', $keywords)->with(['keywords' => $keywords,'posts' => $post -> getPaginateBylimit()]);
+
     }
     
     
@@ -70,4 +71,4 @@ class PostController extends Controller
         return redirect('/');
     }
 }
-?>
+

@@ -15,7 +15,7 @@
                 <option value="領収書">領収書</option>
                 <option value="申請書">申請書</option>
                 <option value="その他">その他</option>
-            </select>-->
+            </select>
             <input type="submit" name="submit" value="検索">
         </form> 
         
