@@ -4,7 +4,7 @@
         
         <form action="/" class="search" method="get">
             @csrf
-            <input type="text" name="title" placeholder="検索：タイトル" value="{{$keyword}}">
+            <input type="text" name="keyword" placeholder="検索：タイトル">
             <!--<select name="post[category]">
                 <option value="備品">備品</option>
                 <option value="ポスター">ポスター</option>
@@ -35,7 +35,7 @@
         </div>
         
         <div class='posts'>
-            @foreach ($all_posts as $post)
+            @foreach ($posts as $post)
                 <h2 class='title'>
                     <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                 </h2>
@@ -48,7 +48,7 @@
         </div>
         
         <div class='paginate'>
-            {{ $all_posts->links() }}
+            {{ $posts->links() }}
         </div>
         <script>
             function deletePost(id) {
