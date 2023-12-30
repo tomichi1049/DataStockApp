@@ -12,22 +12,13 @@ class PostController extends Controller
 {
     public function index(Request $request, Post $post)
     {
-        $keyword=$request->input('keyword');
+        $keyword = $request->input('keyword');
         $keywords = null;
-        //エラー発生を回避するため初期化
-       
-        if(!empty($keyword)){
-            $keywordArraySearched=preg_split('/[\s]+/', $keyword, -1, PREG_SPLIT_NO_EMPTY);
-            $query = Post::query();
-            $keywords=DB::table('posts')
-            ->where(function ($query)use($keywordArraySearched){
-                foreach($keywordArraySearched as $value){
-                    $query->orwhere('title', 'like', '%'.$value.'%');
-                }
-            })->get();
+    
+        if(!$keyword) {
+            $keywords = Post::where('title', 'like', "%{$keyword}%")->get();
         }
-       
-        return view('posts.index')->with('keyword', $keyword)->with(['keywords' => $keywords, 'all_posts' => $post->getPaginateByLimit()]); 
+        return view('posts.index')->with('keywords', $keywords)->with(['keywords' => $keywords,'posts' => $post -> getPaginateBylimit()]);
 
     }
     
