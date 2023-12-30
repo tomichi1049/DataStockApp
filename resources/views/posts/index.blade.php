@@ -35,7 +35,7 @@
         </div>
         
         <div class='posts'>
-            @foreach ($posts as $post)
+            @foreach ($all_posts as $post)
                 <h2 class='title'>
                     <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                 </h2>
@@ -48,7 +48,7 @@
         </div>
         
         <div class='paginate'>
-            {{ $posts->links() }}
+            {{ $all_posts->links() }}
         </div>
         <script>
             function deletePost(id) {

@@ -22,13 +22,12 @@ class PostController extends Controller
             foreach($keywordArraySearched as $value){
                 $query->where('title', 'like', '%'.$value.'%');
             }
-            $posts = $query->get();
-        return view('posts.index')->with('keyword', $keyword)->with(['posts' => $posts]);  
+            $posts = $query->get(); 
         }
         //①searchresult.blade.phpを利用して、indexの外部で処理を実行する
         //②returnをif内で使用できるか試してみる。→一番最後のreturnのみ有効。やはり1つしかかけないのかも。
        
-        return view('posts.index')->with('keyword', $keyword)->with(['posts' => $post->getPaginateByLimit()]);  
+        return view('posts.index')->with('keyword', $keyword)->with(['posts' => $posts, 'all_posts' => $post->getPaginateByLimit()]); 
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
     
