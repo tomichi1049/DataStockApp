@@ -13,21 +13,21 @@ class PostController extends Controller
     public function index(Request $request, Post $post)
     {
         $keyword=$request->input('keyword');
-        $posts = null;
+        $keywords = null;
         //エラー発生を回避するため初期化
        
         if(!empty($keyword)){
             $keywordArraySearched=preg_split('/[\s]+/', $keyword, -1, PREG_SPLIT_NO_EMPTY);
             $query = Post::query();
-            foreach($keywordArraySearched as $value){
-                $query->where('title', 'like', '%'.$value.'%');
-            }
-            $posts = $query->get(); 
+            $keywords=DB::table('posts')
+            ->where(function ($query)use($keywordArraySearched){
+                foreach($keywordArraySearched as $value){
+                    $query->orwhere('title', 'like', '%'.$value.'%');
+                }
+            })->get();
         }
-        //①searchresult.blade.phpを利用して、indexの外部で処理を実行する
-        //②returnをif内で使用できるか試してみる。→一番最後のreturnのみ有効。やはり1つしかかけないのかも。
        
-        return view('posts.index')->with('keyword', $keyword)->with(['posts' => $posts, 'all_posts' => $post->getPaginateByLimit()]); 
+        return view('posts.index')->with('keyword', $keyword)->with(['keywords' => $keywords, 'all_posts' => $post->getPaginateByLimit()]); 
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
     
