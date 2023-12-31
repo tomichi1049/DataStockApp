@@ -14,11 +14,19 @@ class PostController extends Controller
     {
         $keyword = $request->input('keyword');
         $keywords = null;
+        $section = $request->input('section');
     
         if($keyword) {
             $keywords = Post::where('title', 'like', "%{$keyword}%")->get();
         }
-        return view('posts.index')->with('keywords', $keywords)->with(['keywords' => $keywords,'posts' => $post -> getPaginateBylimit()]);
+        
+        if($section){
+            $sections = Post::where('category')->get();
+        }
+        return view('posts.index')
+        ->with('keywords', $keywords)
+        ->with('sections', $sections)
+        ->with(['keywords' => $keywords,'sections' => $sections,'posts' => $post -> getPaginateBylimit()]);
 
     }
     
