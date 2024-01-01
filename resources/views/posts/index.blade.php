@@ -1,11 +1,12 @@
 <x-app-layout>
         <h1>Thread Name</h1>
-        <a href='/posts/create'>作成</a>
+        <a href='/posts/create'>投稿作成</a><br>
+        <a href='/categories/create'>カテゴリー作成</a>
         
         <form action="/" class="search" method="get">
             @csrf
             <input type="text" name="keyword" placeholder="検索：タイトル">
-            <!--<select name="post[category]">
+            <select name="post[category]">
                 <option value="備品">備品</option>
                 <option value="ポスター">ポスター</option>
                 <option value="空間デザイン">空間デザイン</option>
