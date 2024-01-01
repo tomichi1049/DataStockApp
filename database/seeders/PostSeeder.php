@@ -16,7 +16,7 @@ class Postseeder extends Seeder
      */
     public function run()
     {
-        DB::table('posts')->insert([
+        DB::table('categories')->insert([
                 'title' => 'title',
                 'category'=>'category',
                 'user'=>'user',

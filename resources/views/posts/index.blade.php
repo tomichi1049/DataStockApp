@@ -1,6 +1,7 @@
 <x-app-layout>
         <h1>Thread Name</h1>
-        <a href='/posts/create'>作成</a>
+        <a href='/posts/create'>投稿作成</a><br>
+        <a href='/categories/create'>カテゴリー作成</a>
         
         <form action="/" class="search" method="get">
             @csrf

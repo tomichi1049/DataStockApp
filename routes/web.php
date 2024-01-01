@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,10 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
     Route::put('/posts/{post}', 'update')->name('update');
     Route::delete('/posts/{post}', 'delete')->name('delete');
+});
+
+Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::post('/categories/create', 'create')->name('create');
 });
 
 Route::get('/threads/{thread}', [ThreadController::class,'index'])->middleware("auth");
