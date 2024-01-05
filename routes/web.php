@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -38,6 +39,11 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
 });
 
 Route::get('/threads/{thread}', [ThreadController::class,'index'])->middleware("auth");
+
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::post('/articles/{comment_id}/comments', 'store');
+    Route::delete('/comments/{comment_id}', 'destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
