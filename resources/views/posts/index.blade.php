@@ -6,8 +6,9 @@
         <form action="/" class="search" method="get">
             @csrf
             <input type="text" name="keyword" placeholder="検索：タイトル">
+
             <!--<select name="post[category]">
-                <option value="備品">備品</option>
+            <option value="備品">備品</option>
                 <option value="ポスター">ポスター</option>
                 <option value="空間デザイン">空間デザイン</option>
                 <option value="食材">食材</option>
