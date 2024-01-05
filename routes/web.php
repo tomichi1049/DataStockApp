@@ -35,6 +35,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
     Route::post('/categories/create', 'create')->name('create');
+    Route::get('/categories/create', 'create')->name('create');
 });
 
 Route::get('/threads/{thread}', [ThreadController::class,'index'])->middleware("auth");

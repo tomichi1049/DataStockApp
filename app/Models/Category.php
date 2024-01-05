@@ -11,8 +11,13 @@ class Category extends Model
     
     public function getLists()
     {
-        $categories = Post::pluck('category_name', 'id');
+        $categories = Category::pluck('category_name', 'id');
 
         return $categories;
+    }
+    
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
