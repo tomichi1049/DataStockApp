@@ -29,9 +29,11 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/', 'index')->name('index');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
+    Route::post('/show/{post}', 'store')->name('comment');
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
     Route::put('/posts/{post}', 'update')->name('update');
     Route::delete('/posts/{post}', 'delete')->name('delete');
+    Route::delete('/show/{post}', 'destroy')->name('delete');
 });
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
@@ -41,8 +43,8 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
 Route::get('/threads/{thread}', [ThreadController::class,'index'])->middleware("auth");
 
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
-    Route::post('/articles/{comment_id}/comments', 'store');
-    Route::delete('/comments/{comment_id}', 'destroy');
+    Route::post('/show/{post}', 'store');
+    Route::delete('/show/{post}', 'destroy');
 });
 
 Route::middleware('auth')->group(function () {

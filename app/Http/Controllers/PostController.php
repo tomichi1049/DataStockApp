@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,8 +27,8 @@ class PostController extends Controller
         }
         return view('posts.index')
         ->with('keywords', $keywords)
-        ->with('sections', $sections)
-        ->with(['keywords' => $keywords,'sections' => $sections,'posts' => $post -> getPaginateBylimit()]);
+        ->with('section', $section)
+        ->with(['keywords' => $keywords,'section' => $section,'posts' => $post -> getPaginateBylimit()]);
 
     }
     

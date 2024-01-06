@@ -17,6 +17,12 @@ class Comment extends Model
         'user_id',
         'post_id',
     ];
+    
+    public function show(Request $request)
+    {
+        return view('posts.show')->with(['comment' => $comment]);
+        //postsのshow.blade.phpのファイル→なぜか未定義と表示される
+    }
 
     public function post()
     {
