@@ -33,9 +33,10 @@ class PostController extends Controller
     }
     
     
-    public function show(Post $post)
+    public function show(Post $post,Comment $comment)
     {
-        return view('posts.show')->with(['post' => $post]);
+        $comments=$post->comments()->get();
+        return view('posts.show')->with(['post' => $post, 'comments'=>$comments]);
      //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
     
@@ -49,12 +50,14 @@ class PostController extends Controller
         if($request->file('image')){
             $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
             $input = $request['post'];
+            $post->user_id=\Auth::user()->id;
             $input += ['image_url' => $image_url]; 
             $post->fill($input)->save();
             return redirect('/posts/' . $post->id);
         }
         else{
             $input = $request['post'];
+            $post->user_id=\Auth::user()->id;
             $post->fill($input)->save();
             return redirect('/posts/' . $post->id);
         }

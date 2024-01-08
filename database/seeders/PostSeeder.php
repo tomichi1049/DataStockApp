@@ -20,6 +20,7 @@ class Postseeder extends Seeder
                 'title' => 'title',
                 'category'=>'category',
                 'user'=>'user',
+                'user_id'=>1,
                 'text' => 'text',
                 'image'=>'image',
                 'created_at' => new DateTime(),

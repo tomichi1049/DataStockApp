@@ -29,7 +29,6 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/', 'index')->name('index');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
-    Route::post('/posts/{post}', 'store')->name('comment');
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
     Route::put('/posts/{post}', 'update')->name('update');
     Route::delete('/posts/{post}', 'delete')->name('delete');
@@ -41,8 +40,7 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
 });
 
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
-    Route::post('/posts/{post}', 'store');
-    Route::get('/posts/{post}', 'store');
+    Route::post('/comment/{post}', 'store');
     Route::delete('/posts/{post}', 'destroy');
 });
 

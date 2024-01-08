@@ -19,21 +19,16 @@ class CommentController extends Controller
         $this->middleware('auth');
     }
     
-    public function show(Comment $comment)
-    {
-        return view('posts.show')->with(['comment' => $comment->get()]);
-     //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
-    }
+
     //ここではコメントを保存するだけ？Postのshowで表示
-    public function store(Request $request, Comment $comment)
+    public function store(Request $request, Comment $comment , Post $post)
     {
-        $comment = new Comment();
-        $comment->comment = $request->comment ?? 'デフォルトのコメント';
-        $comment->user_id = Auth::user()->id;
-        $comment->post_id = $request->post_id ?? 99999;
+        $comment->comment = $request->comment;
+        $comment->user_id = \Auth::user()->id;
+        $comment->post_id = $post->id;
         $comment->save();
 
-        return redirect('/');
+        return redirect('/posts/'.$post->id);
     }
 
     public function destroy(Request $request)
