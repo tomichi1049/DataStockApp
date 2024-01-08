@@ -29,7 +29,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/', 'index')->name('index');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
-    Route::post('/show/{post}', 'store')->name('comment');
+    Route::post('/posts/{post}', 'store')->name('comment');
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
     Route::put('/posts/{post}', 'update')->name('update');
     Route::delete('/posts/{post}', 'delete')->name('delete');
@@ -40,11 +40,10 @@ Route::controller(CategoryController::class)->middleware(['auth'])->group(functi
     Route::post('/categories/create', 'create')->name('create');
 });
 
-Route::get('/threads/{thread}', [ThreadController::class,'index'])->middleware("auth");
-
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
-    Route::post('/show/{post}', 'store');
-    Route::delete('/show/{post}', 'destroy');
+    Route::post('/posts/{post}', 'store');
+    Route::get('/posts/{post}', 'store');
+    Route::delete('/posts/{post}', 'destroy');
 });
 
 Route::middleware('auth')->group(function () {

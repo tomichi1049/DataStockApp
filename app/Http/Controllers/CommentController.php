@@ -9,6 +9,7 @@ use App\Models\Comment;
 use Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -27,9 +28,9 @@ class CommentController extends Controller
     public function store(Request $request, Comment $comment)
     {
         $comment = new Comment();
-        $comment->comment = $request->comment;
+        $comment->comment = $request->comment ?? 'デフォルトのコメント';
         $comment->user_id = Auth::user()->id;
-        $comment->post_id = $request->post_id;
+        $comment->post_id = $request->post_id ?? 0;
         $comment->save();
 
         return redirect('/');
