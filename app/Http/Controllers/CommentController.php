@@ -30,7 +30,7 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->comment = $request->comment ?? 'デフォルトのコメント';
         $comment->user_id = Auth::user()->id;
-        $comment->post_id = $request->post_id ?? 0;
+        $comment->post_id = $request->post_id ?? 99999;
         $comment->save();
 
         return redirect('/');
