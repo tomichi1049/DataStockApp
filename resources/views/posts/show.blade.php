@@ -1,6 +1,6 @@
 <x-app-layout>
     <body>
-        <h1 class="title">
+        <h1 class="title text-4xl" >
             {{$post->title}}
         </h1>
         <h2 class="category">{{$post->category}}</h2>
