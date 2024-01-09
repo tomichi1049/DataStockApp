@@ -1,7 +1,8 @@
 <x-app-layout>
-        <h1>Thread Name</h1>
-        <a href='/posts/create'>投稿作成</a><br>
-        <a href='/categories/create'>カテゴリー作成</a>
+    <div class="bg-indigo-50">
+        <h1 class="text-4xl justify-center">Thread Name</h1>
+        <a class="text-lg" href='/posts/create'>投稿作成</a><br>
+        <a class="text-lg" href='/categories/create'>カテゴリー作成</a>
         
         <form action="/" class="search" method="get">
             @csrf
@@ -37,7 +38,7 @@
         
         <div class='posts'>
             @foreach ($posts as $post)
-                <h2 class='title'>
+                <h2 class='title text-xl'>
                     <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                 </h2>
                 <h3 class='category'>{{$post->category}}</h3>
@@ -62,4 +63,5 @@
         </script>
         <br>
         <div class='show__user'>ユーザー名：{{ Auth::user()->name  }}</div>
+    </div>
 </x-app-layout>
