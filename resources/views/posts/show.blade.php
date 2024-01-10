@@ -1,5 +1,5 @@
 <x-app-layout>
-    <body>
+    <div class="bg-indigo-50">
         <h1 class="title text-3xl">
             {{$post->title}}
         </h1>
@@ -18,4 +18,5 @@
                 <a href="/">戻る</a>
             </div>
         </div>
+    </div>
 </x-app-layout>
