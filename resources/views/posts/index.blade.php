@@ -1,8 +1,8 @@
 <x-app-layout>
     <div class="bg-indigo-50 bg-cover">
         <h1 class="text-4xl justify-center">Thread Name</h1>
-        <a class="text-lg underline" href='/posts/create'>投稿作成</a><br>
-        <a class="text-lg underline" href='/categories/create'>カテゴリー作成</a>
+        <a class="text-lg text-indigo-700" href='/posts/create'>投稿作成</a><br>
+        <!--<a class="text-lg underline" href='/categories/create'>カテゴリー作成</a>-->
         
         <form action="/" class="search" method="get">
             @csrf
@@ -25,8 +25,8 @@
         @if(!is_null($keywords))
             @if($keywords->count()>0)
             @foreach($keywords as $row)
-                <h2 class='title text-xl text-red-400 transition'>
-                    <a href="/posts/{{ $row->id }}">検索結果：{{ $row->title }}</a>
+                <h2 class='title text-xl transition'>
+                    <a class="text-red-400" href="/posts/{{ $row->id }}">検索結果：{{ $row->title }}</a>
                 </h2>
             @endforeach
             <hr>
@@ -38,7 +38,7 @@
         
         <div class='posts'>
             @foreach ($posts as $post)
-                <h2 class='title text-xl text-indigo-700'>
+                <h2 class='title text-xl underline'>
                     <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                 </h2>
                 <h3 class='category'>{{$post->category}}</h3>

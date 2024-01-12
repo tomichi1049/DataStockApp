@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="bg-indigo-50">
-        <h1 class="title">編集画面</h1>
+        <h1 class="title text-3xl">編集画面</h1>
         <div class="content">
             <form action="/posts/{{ $post->id }}" method="POST">
                 @csrf

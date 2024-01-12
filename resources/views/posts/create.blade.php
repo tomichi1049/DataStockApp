@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="bg-indigo-50">
-        <h1 class="text-xl">データ投稿作成</h1>
+        <h1 class="text-3xl">データ投稿作成</h1>
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
@@ -37,7 +37,7 @@
                 <input type="file" name="image"  accept="image/png, image/jpeg"/>
             </div>
             <br>
-            <input class="text-lg" type="submit" value="送信"/>
+            <input class="text-lg underline" type="submit" value="送信"/>
         </form>
         <div class="footer">
             <a href="/">戻る</a>
