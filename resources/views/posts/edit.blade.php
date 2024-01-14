@@ -1,16 +1,16 @@
 <x-app-layout>
     <div class="bg-indigo-50">
-        <h1 class="title text-3xl">編集画面</h1>
+        <h1 class="title text-3xl font-bold">編集画面</h1>
         <div class="content">
             <form action="/posts/{{ $post->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class='content__title'>
-                    <h2>タイトル</h2>
+                    <h2 class="text-lg text-indigo-700">タイトル</h2>
                     <input type='text' name='post[title]' value="{{ $post->title }}">
                 </div>
                 <div class='content__category'>
-                    <h3>カテゴリー</h3>
+                    <h3 class="text-lg text-indigo-700">カテゴリー</h3>
                     <select name='post[category]' value="{{ $post->category }}">
                         <option value="備品">備品</option>
                         <option value="ポスター">ポスター</option>
@@ -24,18 +24,18 @@
                     </select>
                 </div>
                 <div class='content__user'>
-                    <h3>投稿者名</h3>
+                    <h3 class="text-lg text-indigo-700">投稿者名</h3>
                     <input type='text' name='post[user]' value="{{ $post->user }}">
                 </div>
                 <div class='content__text'>
-                    <h3>詳細</h3>
+                    <h3 class="text-lg text-indigo-700">詳細</h3>
                     <textarea name='post[text]' >{{ $post->text }}</textarea>
                 </div>
                 <div class='content__image'>
-                    <h3>写真</h3>
+                    <h3 class="text-lg text-indigo-700">写真</h3>
                     <input type='file' name='post[image]' value="{{ old('post.image') }}"  accept="image/png, image/jpeg">
                 </div>
-                <input type="submit" value="保存">
+                <input class="underline" type="submit" value="保存">
             </form>
         </div>
     </div>
