@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="bg-indigo-50">
+        <div class="w-[90%] m-auto">
         <h1 class="title text-3xl font-bold">編集画面</h1>
         <div class="content">
             <form action="/posts/{{ $post->id }}" method="POST">
@@ -34,9 +35,10 @@
                 <div class='content__image'>
                     <h3 class="text-lg text-indigo-700">写真</h3>
                     <input type='file' name='post[image]' value="{{ old('post.image') }}"  accept="image/png, image/jpeg">
-                </div>
+                </div><br><hr>
                 <input class="underline" type="submit" value="保存">
             </form>
+        </div>
         </div>
     </div>
 </x-app-layout>

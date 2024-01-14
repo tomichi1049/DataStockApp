@@ -1,11 +1,13 @@
 <x-app-layout>
     <div class="bg-indigo-50 bg-cover justify-center">
-        <div class="w-[80%] m-auto">
-        <h1 class="text-4xl text-indigo-700 text-center">Thread Name</h1>
-        <a class="text-lg underline" href='/posts/create'>投稿作成</a><br>
+        <div class="w-[90%] m-auto">
+        <h1 class="text-4xl text-indigo-700 text-center font-bold">Thread Name</h1>
+        <div class="text-center">
+            <a class="text-lg underline" href='/posts/create'>投稿作成</a><br>
+        </div>
         <!--<a class="text-lg underline" href='/categories/create'>カテゴリー作成</a>-->
         
-        <form action="/" class="search" method="get">
+        <form action="/" class="search text-center" method="get">
             @csrf
             <input type="text" name="keyword" placeholder="検索：タイトル">
             <!--<select name="sectin">
@@ -20,9 +22,9 @@
                 <option value="その他">その他</option>
             </select>-->
             <input type="submit" name="submit" value="検索">
-        </form> 
+        </form> <br><hr>
         
-        <div class='searchresult'>
+        <div class='searchresult text-center'>
         @if(!is_null($keywords))
             @if($keywords->count()>0)
             @foreach($keywords as $row)
@@ -46,6 +48,11 @@
                 <p class='user'>{{ $post->user }}</p>
                 <!--<p class='text'>{{ $post->text }}</p>
                 <p class='image'>{{ $post->image }}</p>-->
+                <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-gray-400 underline" type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                </form>
                 <hr>
             @endforeach
         </div>
@@ -53,6 +60,7 @@
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
+        
         <script>
             function deletePost(id) {
                 'use strict'
@@ -62,8 +70,9 @@
                 }
             }
         </script>
+        
         <br>
-        <div class='show__user'>ユーザー名：{{ Auth::user()->name  }}</div>
+        <div class='show__user text-right'>ユーザー名：{{ Auth::user()->name  }}</div>
         </div>
     </div>
 </x-app-layout>
