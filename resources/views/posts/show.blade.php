@@ -13,7 +13,7 @@
                 <h3 class="text-lg text-indigo-700">詳細</h3>
                 <p>{{$post->text}}</p>
                 <h3 class="text-lg text-indigo-700">写真</h3>
-                <img class="w-2/4 h-2/4" src="{{$post->image_url}}" alt="画像が読み込めません。"/>
+                <img class="w-1/4 h-1/4" src="{{$post->image_url}}" alt="画像が読み込めません。"/>
             </div><br><hr>
             <div class="edit text-lg underline"><a href="/posts/{{ $post->id }}/edit">編集</a></div>
             <div class="footer underline">
